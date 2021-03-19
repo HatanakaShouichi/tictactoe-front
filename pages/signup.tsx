@@ -49,14 +49,16 @@ export default function SignUp() {
   })
   const handleSubmit = async(event) => {
     event.preventDefault();
-    const user = (await axios.post('https://nc8t9d7uo1.execute-api.ap-northeast-1.amazonaws.com/dev/users', {
-        id: signupInput.id,
-        name: signupInput.name,
-        pass: signupInput.pass
-    })).data
-    
-    window.localStorage.setItem("user", JSON.stringify(user));
-    router.push('/')
+    /**
+     * サインアップを行う
+     * axiosで、/usersにPOSTする
+     */
+    /**
+     * ローカルストレージのuserに入れる
+     */
+    /**
+     * ルートに飛ばす
+     */
   };
 
   return (

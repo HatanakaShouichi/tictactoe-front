@@ -48,14 +48,18 @@ export default function SignUp() {
   })
   const handleSubmit = async(event) => {
     event.preventDefault();
-    const user = (await axios.get(`https://nc8t9d7uo1.execute-api.ap-northeast-1.amazonaws.com/dev/users/${signupInput.id}`, { 
-      params: { 
-        pass: signupInput.pass
-      }
-    })).data
+    /**
+     * url: /users/{user_id}?pass="hoge"にGETしてユーザー取得
+     * axiosを使いましょう
+     */
+
+    /**
+     * localStorageのuserに入れる
+     */
     
-    window.localStorage.setItem("user", JSON.stringify(user));
-    router.push('/')
+    /**
+     * ルートに飛ばす
+     */
   };
 
   return (

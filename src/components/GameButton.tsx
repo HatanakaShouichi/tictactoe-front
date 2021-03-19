@@ -34,11 +34,10 @@ export const GameButton: React.FC = () => {
 
     const goCreate = async() => {
         setAnchorEl(null);
-        const user = window.localStorage.getItem("user");
-        const game = (await axios.post('https://nc8t9d7uo1.execute-api.ap-northeast-1.amazonaws.com/dev/games', {
-            first_user_id: JSON.parse(user).id
-        })).data
-        router.replace(`/games/${game.id}`);
+        /**
+         * ローカルストレージからuser情報を取ってきて、gameを作成する
+         * その後にgame/{game_id}に飛ばす
+         */
     };
 
     const goFriend = async() => {

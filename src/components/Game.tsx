@@ -81,26 +81,11 @@ export const Game: React.FC = () => {
   const [time, updateTime] = useState(Date.now());
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => updateTime(Date.now()), 500);
-    if (router.asPath !== router.route) {
-      const {id} = router.query
-      setPid(id)
-    }
-    const fetchData = async () => {
-      if(pid != null) {
-        const result = await axios.get(`https://nc8t9d7uo1.execute-api.ap-northeast-1.amazonaws.com/dev/games/${pid}`)
-        setHistoryList(result.data.histories)
-        setStepNumber(historyList.length -1)
-        setLoading(false);
-      }
-    };
-    fetchData();
-    const cleanup = () => {
-      clearTimeout(timeoutId);
-    };
-    return cleanup;
-  }, [time]); 
+  /**
+   * むずい
+   * /games/{game_id}にGET
+   * useEffectを使って、レンダリング前と0.5秒毎に新しいデータを取ってくる
+   */
 
   // イベントの管理
   const handleClick = async(i: number) => {
@@ -120,10 +105,9 @@ export const Game: React.FC = () => {
       }
     ])
     setHistoryList(newHistoryList);
-    console.log(newHistoryList)
-    await axios.put(`https://nc8t9d7uo1.execute-api.ap-northeast-1.amazonaws.com/dev/games/${pid}`, {
-        histories: newHistoryList
-    })
+    /**
+     * /games/{game_id}にputしてゲーム情報を更新
+     */
 
     setStepNumber(stepNumber + 1);
     setXIsNext(!xIsNext);

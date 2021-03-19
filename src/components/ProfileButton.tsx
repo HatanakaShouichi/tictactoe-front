@@ -33,8 +33,9 @@ export const ProfileButton: React.FC<IProps> = ({userName}) => {
 
     const logout = () => {
         setAnchorEl(null);
-        window.localStorage.removeItem("user");
-        router.replace('/signin');
+        /**
+         * user情報をローカルストレージから削除して、/signinに飛ばす
+         */
     };
 
     const goProfile = () => {

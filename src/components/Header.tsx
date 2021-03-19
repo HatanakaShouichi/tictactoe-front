@@ -20,16 +20,10 @@ const Header = () => {
   const classes = useStyles();
   const [userName, setUserName] = useState('')
   
-  useEffect(() => {
-    const item = localStorage.getItem("user")
-    if(item == null && router.pathname != "/signin" && router.pathname != "/signup") {
-      router.replace('/signin')
-    } 
-    if(item != null) {
-      const name = JSON.parse(item).name
-      setUserName(name)
-    }
-  })
+  /**
+   * useEffectを使って
+   * マウント後にもし、ログインされていなければ、/si
+   */
 
   return (
     <div>
